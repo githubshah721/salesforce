@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 @Service
-public class SalesForceToolingServiceGenerator implements SalesServicePP {
+public class SalesForceToolingClientImpl implements SalesForceToolingClient {
     @Value("${salesforce.instance}")
     private String BASE_URL;
 
@@ -42,7 +42,6 @@ public class SalesForceToolingServiceGenerator implements SalesServicePP {
     private Retrofit.Builder builder;
     private Retrofit retrofit;
     private final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-
 
     @PostConstruct
     void init() {
@@ -72,7 +71,6 @@ public class SalesForceToolingServiceGenerator implements SalesServicePP {
     }
 
     RestTemplate restTemplate = new RestTemplate();
-
 
     private String getAccessToken() {
         String url = String.format("%s?grant_type=%s&client_id=%s&client_secret=%s&username=%s&password=%s",

@@ -9,13 +9,13 @@ import java.io.IOException;
 
 public interface SalesforceToolingApiService {
 
-    JsonObject getToolingSObjects() throws IOException;
+    JsonObject getSObjects() throws IOException;
 
-    JsonObject getToolingSObjectsName(String sObjectName) throws IOException;
+    JsonObject getSObjectsByName(String sObjectName) throws IOException;
 
-    JsonObject getToolingSObjectsNameDescribe(String sObjectName) throws IOException;
+    JsonObject getSObjectsDescribeByName(String sObjectName) throws IOException;
 
-    JsonObject getToolingSObjectsQuery(String query) throws IOException;
+    JsonObject getSObjectsByQuery(String query) throws IOException;
 
     default JsonObject getDataFrom(Call<JsonObject> call) throws IOException {
         Response<JsonObject> execute = call.execute();

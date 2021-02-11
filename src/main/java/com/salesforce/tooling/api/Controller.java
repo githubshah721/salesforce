@@ -21,7 +21,7 @@ public class Controller {
      */
     @RequestMapping("")
     JsonObject getToolingSObjects() throws IOException {
-        return salesforceToolingApiService.getToolingSObjects();
+        return salesforceToolingApiService.getSObjects();
     }
 
     /**
@@ -31,7 +31,7 @@ public class Controller {
     @RequestMapping("/{sObjectName}")
     JsonObject getToolingSObjectsName(@PathVariable String sObjectName) throws IOException {
         System.out.println("SObjectName: " + sObjectName);
-        return salesforceToolingApiService.getToolingSObjectsName(sObjectName);
+        return salesforceToolingApiService.getSObjectsByName(sObjectName);
     }
 
     /**
@@ -41,7 +41,7 @@ public class Controller {
     @RequestMapping("/{sObjectName}/describe")
     JsonObject getToolingSObjectsDescribe(@PathVariable String sObjectName) throws IOException {
         System.out.println("SObjectName: " + sObjectName);
-        return salesforceToolingApiService.getToolingSObjectsNameDescribe(sObjectName);
+        return salesforceToolingApiService.getSObjectsDescribeByName(sObjectName);
     }
 
     /**
@@ -52,6 +52,6 @@ public class Controller {
      */
     @RequestMapping("/my")
     JsonObject getToolingSObjectsQuery(@PathParam("q") String q) throws IOException {
-        return salesforceToolingApiService.getToolingSObjectsQuery(q);
+        return salesforceToolingApiService.getSObjectsByQuery(q);
     }
 }
