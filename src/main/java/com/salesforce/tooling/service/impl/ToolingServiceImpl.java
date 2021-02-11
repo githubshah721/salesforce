@@ -26,7 +26,8 @@ import java.util.Map;
 @Service
 public class ToolingServiceImpl implements ToolingService {
 
-    private RestTemplate restTemplate = new RestTemplate();;
+    private RestTemplate restTemplate = new RestTemplate();
+    ;
 
     @Autowired
     private SalesServicePP salesServicePP;
@@ -36,6 +37,21 @@ public class ToolingServiceImpl implements ToolingService {
     public JsonObject getToolingSObjects() {
         ToolingSObjects service1 = salesServicePP.createService(ToolingSObjects.class);
         Call<JsonObject> allUser123 = service1.getSObjects();
+        try {
+            Response<JsonObject> execute = allUser123.execute();
+            JsonObject body = execute.body();
+            System.out.println(body);
+            return body;
+        } catch (IOException ex) {
+
+        }
+        return null;
+    }
+
+    @Override
+    public JsonObject getToolingSObjectsName(String sObjectName) {
+        ToolingSObjects service1 = salesServicePP.createService(ToolingSObjects.class);
+        Call<JsonObject> allUser123 = service1.getSObjectsName(sObjectName);
         try {
             Response<JsonObject> execute = allUser123.execute();
             JsonObject body = execute.body();
