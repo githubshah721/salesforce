@@ -3,7 +3,7 @@ package com.salesforce.tooling.service;
 import com.google.gson.JsonObject;
 
 
-public interface ToolingService {
+public interface SalesforceToolingApiService {
 
     JsonObject getToolingSObjects();
 

@@ -4,7 +4,7 @@ package com.salesforce.tooling.service.impl;
 import com.google.gson.JsonObject;
 import com.salesforce.tooling.client.SalesServicePP;
 import com.salesforce.tooling.client.ToolingSObjects;
-import com.salesforce.tooling.service.ToolingService;
+import com.salesforce.tooling.service.SalesforceToolingApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
@@ -14,7 +14,7 @@ import java.io.IOException;
 
 
 @Service
-public class ToolingServiceImpl implements ToolingService {
+public class SalesforceToolingApiServiceImpl implements SalesforceToolingApiService {
 
     @Autowired
     private SalesServicePP salesServicePP;
