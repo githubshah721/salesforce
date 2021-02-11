@@ -11,6 +11,7 @@ import javax.websocket.server.PathParam;
 import java.io.IOException;
 
 @RestController
+@RequestMapping(value = "/services/data/v50.0")
 public class Controller {
 
     @Autowired
@@ -19,7 +20,7 @@ public class Controller {
     /**
      * @return Lists the available Tooling API objects and their metadata
      */
-    @RequestMapping("")
+    @RequestMapping("/tooling/sobjects")
     JsonObject getToolingSObjects() throws IOException {
         return salesforceToolingApiService.getSObjects();
     }
@@ -28,7 +29,7 @@ public class Controller {
      * @param sObjectName : sObjectName
      * @return Describe the individual metadata for the specified object:
      */
-    @RequestMapping("/{sObjectName}")
+    @RequestMapping("/tooling/sobjects/{sObjectName}")
     JsonObject getToolingSObjectsName(@PathVariable String sObjectName) throws IOException {
         System.out.println("SObjectName: " + sObjectName);
         return salesforceToolingApiService.getSObjectsByName(sObjectName);
@@ -38,7 +39,7 @@ public class Controller {
      * @param sObjectName : sObjectName
      * @return Completely describes the individual metadata at all levels for the specified object.
      */
-    @RequestMapping("/{sObjectName}/describe")
+    @RequestMapping("/tooling/sobjects/{sObjectName}/describe")
     JsonObject getToolingSObjectsDescribe(@PathVariable String sObjectName) throws IOException {
         System.out.println("SObjectName: " + sObjectName);
         return salesforceToolingApiService.getSObjectsDescribeByName(sObjectName);
@@ -50,7 +51,7 @@ public class Controller {
      * @param q = SOQL query.
      * @return data that matches the specified criteria.
      */
-    @RequestMapping("/my")
+    @RequestMapping("/query/")
     JsonObject getToolingSObjectsQuery(@PathParam("q") String q) throws IOException {
         return salesforceToolingApiService.getSObjectsByQuery(q);
     }
