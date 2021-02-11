@@ -11,4 +11,7 @@ public interface ToolingSObjects {
 
     @GET("/services/data/v50.0/tooling/sobjects/{sObjectName}")
     Call<JsonObject> getSObjectsName(@Path("sObjectName") String sObjectName);
+
+    @GET("/services/data/v50.0/tooling/sobjects/{sObjectName}/describe")
+    Call<JsonObject> getSObjectsNameDescribe(@Path("sObjectName") String sObjectName);
 }

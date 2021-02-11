@@ -8,4 +8,6 @@ public interface ToolingService {
     JsonObject getToolingSObjects();
 
     JsonObject getToolingSObjectsName(String sObjectName);
+
+    JsonObject getToolingSObjectsNameDescribe(String sObjectName);
 }

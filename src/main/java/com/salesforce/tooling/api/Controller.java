@@ -25,4 +25,10 @@ public class Controller {
         return toolingService.getToolingSObjectsName(sObjectName);
     }
 
+    @RequestMapping("/{sObjectName}/describe")
+    JsonObject getToolingSObjectsDescribe(@PathVariable String sObjectName){
+        System.out.println("SObjectName: " + sObjectName);
+        return toolingService.getToolingSObjectsNameDescribe(sObjectName);
+    }
+
 }

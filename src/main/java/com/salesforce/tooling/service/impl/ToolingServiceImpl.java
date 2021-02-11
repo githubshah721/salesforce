@@ -48,4 +48,19 @@ public class ToolingServiceImpl implements ToolingService {
         }
         return null;
     }
+
+    @Override
+    public JsonObject getToolingSObjectsNameDescribe(String sObjectName) {
+        ToolingSObjects service1 = salesServicePP.createService(ToolingSObjects.class);
+        Call<JsonObject> allUser123 = service1.getSObjectsNameDescribe(sObjectName);
+        try {
+            Response<JsonObject> execute = allUser123.execute();
+            JsonObject body = execute.body();
+            System.out.println(body);
+            return body;
+        } catch (IOException ex) {
+
+        }
+        return null;
+    }
 }
