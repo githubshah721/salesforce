@@ -36,9 +36,13 @@ public class SalesForceToolingServiceGenerator implements SalesServicePP {
     @Value("${salesforce.password}")
     private String PASSWORD;
 
+    @Value("${salesforce.auth_url}")
+    private String AUTH_URL;
+
     private Retrofit.Builder builder;
     private Retrofit retrofit;
     private final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+
 
     @PostConstruct
     void init() {
@@ -66,14 +70,12 @@ public class SalesForceToolingServiceGenerator implements SalesServicePP {
 
         return retrofit.create(serviceClass);
     }
-
     RestTemplate restTemplate = new RestTemplate();
 
-    private String AuthUrl = "https://login.salesforce.com/services/oauth2/token";
 
     private String getAccessToken() {
         String url = String.format("%s?grant_type=%s&client_id=%s&client_secret=%s&username=%s&password=%s",
-            AuthUrl, GRANT_TYPE, CLIENT_ID, CLIENT_SECRET, USER_NAME, PASSWORD);
+            AUTH_URL, GRANT_TYPE, CLIENT_ID, CLIENT_SECRET, USER_NAME, PASSWORD);
         ResponseEntity<Token> response = restTemplate.postForEntity(url, new HttpEntity<>(new HashMap()), Token.class);
         Token body = response.getBody();
         return body.access_token;
