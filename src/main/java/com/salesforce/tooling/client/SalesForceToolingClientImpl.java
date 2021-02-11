@@ -1,5 +1,6 @@
 package com.salesforce.tooling.client;
 
+import com.salesforce.tooling.client.pojo.Token;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -76,7 +77,7 @@ public class SalesForceToolingClientImpl implements SalesForceToolingClient {
         String url = String.format("%s?grant_type=%s&client_id=%s&client_secret=%s&username=%s&password=%s",
             AUTH_URL, GRANT_TYPE, CLIENT_ID, CLIENT_SECRET, USER_NAME, PASSWORD);
         ResponseEntity<Token> response = restTemplate.postForEntity(url, new HttpEntity<>(new HashMap()), Token.class);
-        Token body = response.getBody();
-        return body.access_token;
+        Token accessToken = response.getBody();
+        return accessToken.getAccess_token();
     }
 }

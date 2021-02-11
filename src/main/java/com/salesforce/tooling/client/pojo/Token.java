@@ -1,4 +1,4 @@
-package com.salesforce.tooling.client;
+package com.salesforce.tooling.client.pojo;
 
 public class Token {
     String access_token;
