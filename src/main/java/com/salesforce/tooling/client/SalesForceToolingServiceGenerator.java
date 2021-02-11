@@ -21,6 +21,21 @@ public class SalesForceToolingServiceGenerator implements SalesServicePP {
     @Value("${salesforce.instance}")
     private String BASE_URL;
 
+    @Value("${salesforce.grant_type}")
+    private String GRANT_TYPE;
+
+    @Value("${salesforce.client_id}")
+    private String CLIENT_ID;
+
+    @Value("${salesforce.client_secret}")
+    private String CLIENT_SECRET;
+
+    @Value("${salesforce.username}")
+    private String USER_NAME;
+
+    @Value("${salesforce.password}")
+    private String PASSWORD;
+
     private Retrofit.Builder builder;
     private Retrofit retrofit;
     private final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
@@ -54,13 +69,11 @@ public class SalesForceToolingServiceGenerator implements SalesServicePP {
 
     RestTemplate restTemplate = new RestTemplate();
 
+    private String AuthUrl = "https://login.salesforce.com/services/oauth2/token";
+
     private String getAccessToken() {
-        String url = "https://login.salesforce.com/services/oauth2/token?" +
-            "grant_type=password&" +
-            "client_id=3MVG9fe4g9fhX0E5mrMd_Kq1IykXBy7kQXgKJeJZj0NhvJoO4CLR231N3zv8w4TWVyu74LLxkekqTzMC5gSs5&" +
-            "client_secret=0D0D8EEF93AEBA8D1195D3F42DF80E3B9A9B33EAAE96EFD1CBA1F2E52708DF06&" +
-            "username=shaid.hussain721@gmail.com&" +
-            "password=salesforce@721FbIVKW9TDuzP7HGOI4hY7RSi";
+        String url = String.format("%s?grant_type=%s&client_id=%s&client_secret=%s&username=%s&password=%s",
+            AuthUrl, GRANT_TYPE, CLIENT_ID, CLIENT_SECRET, USER_NAME, PASSWORD);
         ResponseEntity<Token> response = restTemplate.postForEntity(url, new HttpEntity<>(new HashMap()), Token.class);
         Token body = response.getBody();
         return body.access_token;
