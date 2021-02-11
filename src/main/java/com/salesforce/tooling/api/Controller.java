@@ -8,13 +8,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.websocket.server.PathParam;
+
 @RestController
 public class Controller {
 
     @Autowired
     private ToolingService toolingService;
 
-    @GetMapping
+    @RequestMapping("")
     JsonObject getToolingSObjects(){
        return toolingService.getToolingSObjects();
     }
@@ -31,4 +33,8 @@ public class Controller {
         return toolingService.getToolingSObjectsNameDescribe(sObjectName);
     }
 
+    @RequestMapping("/my")
+    JsonObject getToolingSObjectsQuery(@PathParam("q") String q){
+        return toolingService.getToolingSObjectsQuery(q);
+    }
 }

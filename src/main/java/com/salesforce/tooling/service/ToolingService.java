@@ -10,4 +10,6 @@ public interface ToolingService {
     JsonObject getToolingSObjectsName(String sObjectName);
 
     JsonObject getToolingSObjectsNameDescribe(String sObjectName);
+
+    JsonObject getToolingSObjectsQuery(String query);
 }
