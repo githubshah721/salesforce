@@ -5,22 +5,28 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 
 @Service
 public class SalesForceToolingServiceGenerator implements SalesServicePP{
+    @Value("${salesforce.instance}")
+    private String BASE_URL;
 
-    private final String BASE_URL = "https://daffodilsoftwarelimited2-dev-ed.my.salesforce.com/";
+    private Retrofit.Builder builder;
+    private Retrofit retrofit;
+    private final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
-    private Retrofit.Builder builder = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create());
-
-    private Retrofit retrofit = builder.build();
-
-    private OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+    @PostConstruct
+    void init(){
+        builder = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create());
+        retrofit = builder.build();
+    }
 
     @Override
     public <S> S createService(Class<S> serviceClass, final String token) {

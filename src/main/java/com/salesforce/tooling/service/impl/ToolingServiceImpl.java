@@ -17,15 +17,11 @@ import java.io.IOException;
 
 @Service
 public class ToolingServiceImpl implements ToolingService {
-    @Value("${gsc.environment.react.domains}")
-    String name;
-
     @Autowired
     private SalesServicePP salesServicePP;
 
     @Override
     public JsonObject getToolingSObjects() {
-        System.out.println(">> "+salesServicePP);
         ToolingSObjects service1 = salesServicePP.createService(ToolingSObjects.class, "Bearer 00D5g000004EdH3!ARYAQCwqt0Zt1caf.QEPGUFnTfU1RzOFfiypsN2YH6upZlzXW.cVBLu48SutzOpPfzSAs4U2..EhUEYncD93xT0hmNqhgaLu");
         Call<JsonObject> allUser123 = service1.getSObjects();
         try {
