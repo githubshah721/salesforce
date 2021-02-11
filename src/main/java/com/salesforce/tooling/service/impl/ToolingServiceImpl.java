@@ -7,7 +7,6 @@ import com.salesforce.tooling.client.ToolingSObjects;
 import com.salesforce.tooling.service.ToolingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import retrofit2.Call;
 import retrofit2.Response;
 
