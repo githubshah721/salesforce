@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
 
-public class GitHubServiceGenerator {
+public class SalesForceToolingServiceGenerator {
 
     private static final String BASE_URL = "https://daffodilsoftwarelimited2-dev-ed.my.salesforce.com/";
 

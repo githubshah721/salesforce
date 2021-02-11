@@ -2,7 +2,7 @@ package com.salesforce.tooling.service.impl;
 
 
 import com.google.gson.JsonObject;
-import com.salesforce.tooling.client.GitHubServiceGenerator;
+import com.salesforce.tooling.client.SalesForceToolingServiceGenerator;
 import com.salesforce.tooling.client.ToolingSObjects;
 import com.salesforce.tooling.service.ToolingService;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,7 +20,7 @@ public class ToolingServiceImpl implements ToolingService {
 
     @Override
     public JsonObject getToolingSObjects() {
-        ToolingSObjects service1 = GitHubServiceGenerator.createService(ToolingSObjects.class, "Bearer 00D5g000004EdH3!ARYAQCwqt0Zt1caf.QEPGUFnTfU1RzOFfiypsN2YH6upZlzXW.cVBLu48SutzOpPfzSAs4U2..EhUEYncD93xT0hmNqhgaLu");
+        ToolingSObjects service1 = SalesForceToolingServiceGenerator.createService(ToolingSObjects.class, "Bearer 00D5g000004EdH3!ARYAQCwqt0Zt1caf.QEPGUFnTfU1RzOFfiypsN2YH6upZlzXW.cVBLu48SutzOpPfzSAs4U2..EhUEYncD93xT0hmNqhgaLu");
         Call<JsonObject> allUser123 = service1.getSObjects();
         try {
             Response<JsonObject> execute = allUser123.execute();
