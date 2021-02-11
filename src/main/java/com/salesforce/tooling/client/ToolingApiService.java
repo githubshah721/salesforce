@@ -6,7 +6,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface ToolingSObjects {
+public interface ToolingApiService {
     @GET("/services/data/v50.0/tooling/sobjects/")
     Call<JsonObject> getSObjects();
 
