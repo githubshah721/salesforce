@@ -3,8 +3,10 @@ package com.salesforce.tooling.service.impl;
 
 import com.google.gson.JsonObject;
 import com.salesforce.tooling.client.SalesForceToolingServiceGenerator;
+import com.salesforce.tooling.client.SalesServicePP;
 import com.salesforce.tooling.client.ToolingSObjects;
 import com.salesforce.tooling.service.ToolingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
@@ -18,9 +20,13 @@ public class ToolingServiceImpl implements ToolingService {
     @Value("${gsc.environment.react.domains}")
     String name;
 
+    @Autowired
+    private SalesServicePP salesServicePP;
+
     @Override
     public JsonObject getToolingSObjects() {
-        ToolingSObjects service1 = SalesForceToolingServiceGenerator.createService(ToolingSObjects.class, "Bearer 00D5g000004EdH3!ARYAQCwqt0Zt1caf.QEPGUFnTfU1RzOFfiypsN2YH6upZlzXW.cVBLu48SutzOpPfzSAs4U2..EhUEYncD93xT0hmNqhgaLu");
+        System.out.println(">> "+salesServicePP);
+        ToolingSObjects service1 = salesServicePP.createService(ToolingSObjects.class, "Bearer 00D5g000004EdH3!ARYAQCwqt0Zt1caf.QEPGUFnTfU1RzOFfiypsN2YH6upZlzXW.cVBLu48SutzOpPfzSAs4U2..EhUEYncD93xT0hmNqhgaLu");
         Call<JsonObject> allUser123 = service1.getSObjects();
         try {
             Response<JsonObject> execute = allUser123.execute();
