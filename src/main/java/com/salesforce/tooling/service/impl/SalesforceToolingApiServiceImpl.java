@@ -7,6 +7,7 @@ import com.salesforce.tooling.client.ToolingApiService;
 import com.salesforce.tooling.service.SalesforceToolingApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import retrofit2.Call;
 
 import java.io.IOException;
 
@@ -38,5 +39,9 @@ public class SalesforceToolingApiServiceImpl implements SalesforceToolingApiServ
     @Override
     public JsonObject getSObjectsByQuery(String query) throws IOException {
         return getDataFrom(toolingApiService.getSObjectsQuery(query));
+    }
+
+    private JsonObject getDataFrom(Call<JsonObject> call) throws IOException {
+        return call.execute().body();
     }
 }

@@ -16,9 +16,4 @@ public interface SalesforceToolingApiService {
     JsonObject getSObjectsDescribeByName(String sObjectName) throws IOException;
 
     JsonObject getSObjectsByQuery(String query) throws IOException;
-
-    default JsonObject getDataFrom(Call<JsonObject> call) throws IOException {
-        Response<JsonObject> execute = call.execute();
-        return execute.body();
-    }
 }
